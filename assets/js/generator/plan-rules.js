@@ -66,7 +66,7 @@ export const weekTemplates = {
     "情緒調節與親子衝突降溫",
     "每天 10 分鐘親子連結",
     "學校協作",
-    "回顧、維持與 relapse prevention",
+    "回顧、維持與復發預防",
   ],
 };
 

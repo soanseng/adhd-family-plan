@@ -45,3 +45,9 @@ test("entry pages load local vendored jQuery", () => {
     assert.doesNotMatch(html, /https:\/\/code\.jquery\.com/);
   }
 });
+
+test("generator print button is disabled before output exists", () => {
+  const html = readFileSync("generator.html", "utf8");
+
+  assert.match(html, /data-print data-print-plan disabled/);
+});

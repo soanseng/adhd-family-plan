@@ -26,6 +26,7 @@ function applyDraft(form, draft) {
 export function initGenerator($) {
   const form = document.querySelector("[data-generator-form]");
   const output = document.querySelector("[data-plan-output]");
+  const printButton = document.querySelector("[data-print-plan]");
   if (!form || !output) return;
 
   applyDraft(form, loadDraft());
@@ -41,6 +42,7 @@ export function initGenerator($) {
     }
     output.innerHTML = renderPlan(currentPlan);
     output.removeAttribute("hidden");
+    if (printButton) printButton.disabled = false;
     output.focus();
   });
 
@@ -57,6 +59,7 @@ export function initGenerator($) {
     form.reset();
     output.innerHTML = "";
     output.setAttribute("hidden", "");
+    if (printButton) printButton.disabled = true;
     currentPlan = null;
   });
 }

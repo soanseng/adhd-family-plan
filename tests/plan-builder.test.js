@@ -61,6 +61,7 @@ test("8-week plans default to standard depth when intensity is not forced", () =
 
   assert.equal(plan.input.intensity, "standard");
   assert.equal(plan.strategies.length, 3);
+  assert.ok(plan.weeklyPlan.some((week) => week.theme === "回顧、維持與復發預防"));
 });
 
 test("sleep and screen flags add sleep-screen strategy without overloading output", () => {
