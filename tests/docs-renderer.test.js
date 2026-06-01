@@ -11,6 +11,7 @@ test("docs sidebar routes chapters through rendered guide page", () => {
   assert.ok(hrefs.every((href) => !href.split("?")[0].endsWith(".md")));
   assert.match(sidebar, /index\.html\?chapter=README\.md/);
   assert.match(sidebar, /data-doc-link="references\.md"/);
+  assert.match(sidebar, /參考文獻/);
 });
 
 test("markdown renderer emits HTML instead of raw markdown", () => {
@@ -34,6 +35,8 @@ test("footer references route through rendered docs shell", () => {
 
   assert.match(root, /docs\/index\.html\?chapter=references\.md/);
   assert.match(generator, /docs\/index\.html\?chapter=references\.md/);
+  assert.match(root, /參考文獻/);
+  assert.match(generator, /參考文獻/);
   assert.doesNotMatch(root, /href="docs\/references\.md"/);
   assert.doesNotMatch(generator, /href="docs\/references\.md"/);
 });
