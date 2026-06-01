@@ -88,6 +88,20 @@ test("main difficulty stays ahead of low school support in generation priority",
   assert.match(plan.summary, /作業拖延/);
 });
 
+test("forgetfulness main difficulty is not outranked by secondary modifiers", () => {
+  const plan = buildPlan({
+    age: 8,
+    mainDifficulty: "forgetfulness",
+    schoolSupport: "low",
+    sleepIssue: true,
+    screenIssue: true,
+    planLengthWeeks: 4,
+  });
+
+  assert.equal(plan.strategies[0].id, "morning_routine");
+  assert.match(plan.summary, /早晨出門流程/);
+});
+
 test("reward preferences change visible plan suggestions", () => {
   const activityPlan = buildPlan({
     age: 8,

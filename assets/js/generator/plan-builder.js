@@ -12,6 +12,10 @@ import { clamp, toInt, unique } from "../shared/validators.js";
 const disclaimer =
   "本網站提供 ADHD 家庭支持與教育資訊，不能取代醫師、心理師、職能治療師、特教老師或其他專業人員的評估與治療。若孩子出現明顯情緒低落、強烈焦慮、攻擊行為、嚴重睡眠問題、學習退化、疑似自閉症或其他發展困難，請尋求專業協助。若孩子正在使用藥物，請勿自行停藥或調整劑量，請與醫師討論。";
 
+const mainDifficultyAliases = {
+  forgetfulness: ["morning_routine", "homework_delay"],
+};
+
 function buildTriggers(input) {
   const triggers = [input.mainDifficulty, input.schoolSupport === "low" ? "school_support_low" : ""];
   if (input.sleepIssue) triggers.push("sleep_issue");
@@ -31,9 +35,11 @@ function selectRules(input, ageBand) {
     .map((rule) => ({ rule, score: scoreRule(rule, triggers, ageBand.id) }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score || a.rule.label.localeCompare(b.rule.label, "zh-Hant"));
+  const primaryIds = mainDifficultyAliases[input.mainDifficulty] || [input.mainDifficulty];
   const primary =
-    scoredRules.find(({ rule }) => rule.id === input.mainDifficulty) ||
-    scoredRules.find(({ rule }) => rule.triggers[0] === input.mainDifficulty);
+    primaryIds.map((id) => scoredRules.find(({ rule }) => rule.id === id)).find(Boolean) ||
+    scoredRules.find(({ rule }) => rule.triggers[0] === input.mainDifficulty) ||
+    scoredRules.find(({ rule }) => rule.triggers.includes(input.mainDifficulty));
   const orderedRules = primary
     ? [primary, ...scoredRules.filter(({ rule }) => rule.id !== primary.rule.id)]
     : scoredRules;
