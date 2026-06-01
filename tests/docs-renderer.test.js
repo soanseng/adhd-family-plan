@@ -37,3 +37,11 @@ test("footer references route through rendered docs shell", () => {
   assert.doesNotMatch(root, /href="docs\/references\.md"/);
   assert.doesNotMatch(generator, /href="docs\/references\.md"/);
 });
+
+test("entry pages load local vendored jQuery", () => {
+  for (const file of ["index.html", "generator.html", "downloads.html"]) {
+    const html = readFileSync(file, "utf8");
+    assert.match(html, /assets\/vendor\/jquery-4\.0\.0\.min\.js/);
+    assert.doesNotMatch(html, /https:\/\/code\.jquery\.com/);
+  }
+});
