@@ -1,11 +1,20 @@
 const STORAGE_KEY = "adhd-family-plan-v1";
 
 export function saveDraft(value) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+  } catch {
+    // Drafts are optional; blocked storage should never break generation.
+  }
 }
 
 export function loadDraft() {
-  const raw = localStorage.getItem(STORAGE_KEY);
+  let raw = null;
+  try {
+    raw = localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
   if (!raw) return null;
   try {
     return JSON.parse(raw);
@@ -15,5 +24,9 @@ export function loadDraft() {
 }
 
 export function clearDraft() {
-  localStorage.removeItem(STORAGE_KEY);
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Nothing to clear when storage is blocked.
+  }
 }

@@ -10,6 +10,7 @@ export function readGeneratorForm(form) {
     planLengthWeeks: data.get("planLengthWeeks"),
     sleepIssue: data.has("sleepIssue"),
     screenIssue: data.has("screenIssue"),
+    saveDraft: data.has("saveDraft"),
     intensity: data.get("intensity"),
     rewardTypes: data.getAll("rewardTypes"),
   };

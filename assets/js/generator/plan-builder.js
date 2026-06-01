@@ -26,10 +26,18 @@ function scoreRule(rule, triggers, ageBandId) {
 
 function selectRules(input, ageBand) {
   const triggers = buildTriggers(input);
-  return ruleModules
+  const scoredRules = ruleModules
     .map((rule) => ({ rule, score: scoreRule(rule, triggers, ageBand.id) }))
     .filter(({ score }) => score > 0)
-    .sort((a, b) => b.score - a.score || a.rule.label.localeCompare(b.rule.label, "zh-Hant"))
+    .sort((a, b) => b.score - a.score || a.rule.label.localeCompare(b.rule.label, "zh-Hant"));
+  const primary =
+    scoredRules.find(({ rule }) => rule.id === input.mainDifficulty) ||
+    scoredRules.find(({ rule }) => rule.triggers[0] === input.mainDifficulty);
+  const orderedRules = primary
+    ? [primary, ...scoredRules.filter(({ rule }) => rule.id !== primary.rule.id)]
+    : scoredRules;
+
+  return orderedRules
     .slice(0, input.intensity === "starter" ? 2 : 3)
     .map(({ rule }) => rule);
 }

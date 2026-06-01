@@ -34,7 +34,11 @@ export function initGenerator($) {
     event.preventDefault();
     const formState = readGeneratorForm(form);
     currentPlan = buildPlan(formState);
-    saveDraft(formState);
+    if (formState.saveDraft) {
+      saveDraft(formState);
+    } else {
+      clearDraft();
+    }
     output.innerHTML = renderPlan(currentPlan);
     output.removeAttribute("hidden");
     output.focus();

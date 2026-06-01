@@ -63,6 +63,18 @@ test("sleep and screen flags add sleep-screen strategy without overloading outpu
   assert.ok(plan.forms.some((form) => form.id === "weekly-review"));
 });
 
+test("main difficulty stays ahead of low school support in generation priority", () => {
+  const plan = buildPlan({
+    age: 8,
+    mainDifficulty: "homework_delay",
+    schoolSupport: "low",
+    planLengthWeeks: 4,
+  });
+
+  assert.equal(plan.strategies[0].id, "homework_delay");
+  assert.match(plan.summary, /作業拖延/);
+});
+
 test("exporters produce JSON and CSV that contain weekly plan data", () => {
   const plan = buildPlan({
     age: 8,
