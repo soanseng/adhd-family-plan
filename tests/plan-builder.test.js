@@ -49,6 +49,19 @@ test("buildPlan creates 8-week plans and adapts content by age band", () => {
   assert.ok(teen.schoolSuggestions.some((text) => text.includes("具體請求")));
 });
 
+test("8-week plans default to standard depth when intensity is not forced", () => {
+  const plan = buildPlan({
+    age: 11,
+    mainDifficulty: "homework_delay",
+    schoolSupport: "low",
+    sleepIssue: true,
+    planLengthWeeks: 8,
+  });
+
+  assert.equal(plan.input.intensity, "standard");
+  assert.equal(plan.strategies.length, 3);
+});
+
 test("sleep and screen flags add sleep-screen strategy without overloading output", () => {
   const plan = buildPlan({
     age: 11,

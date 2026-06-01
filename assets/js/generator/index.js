@@ -55,6 +55,7 @@ export function initGenerator($) {
   $("[data-clear-draft]").on("click", () => {
     clearDraft();
     form.reset();
+    output.innerHTML = "";
     output.setAttribute("hidden", "");
     currentPlan = null;
   });

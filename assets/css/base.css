@@ -50,6 +50,10 @@ img {
   height: auto;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 a {
   color: var(--color-link);
   text-decoration-thickness: 0.08em;
