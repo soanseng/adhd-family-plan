@@ -83,6 +83,21 @@ export const schoolAdjustments = {
   high: ["可討論座位、作業拆段、提醒卡與每週回顧"],
 };
 
+export const rewardIdeas = {
+  parent_child_time: {
+    label: "親子時間",
+    examples: ["一起玩桌遊 10 分鐘", "一起散步", "一起選晚餐"],
+  },
+  activity: {
+    label: "活動獎勵",
+    examples: ["公園時間", "球類活動", "畫畫材料"],
+  },
+  screen_time: {
+    label: "螢幕時間",
+    examples: ["額外 10 分鐘遊戲", "週末看一集節目"],
+  },
+};
+
 export const formLabels = {
   "daily-routine": "日常流程表",
   "reward-chart": "獎勵星星表",

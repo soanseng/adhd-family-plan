@@ -41,6 +41,11 @@ export function renderPlan(plan) {
         ${list(plan.schoolSuggestions)}
       </article>
 
+      <article class="plan-card">
+        <h3>偏好獎勵建議</h3>
+        ${list(plan.rewardSuggestions)}
+      </article>
+
       <section class="timeline" aria-label="每週計畫">
         ${weeks}
       </section>

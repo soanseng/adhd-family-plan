@@ -2,6 +2,7 @@ import { getAgeBand } from "./age-bands.js";
 import {
   familyAdjustments,
   formLabels,
+  rewardIdeas,
   ruleModules,
   schoolAdjustments,
   weekTemplates,
@@ -63,6 +64,14 @@ function buildWeeklyPlan(length, selectedRules, input) {
   });
 }
 
+function buildRewardSuggestions(rewardTypes) {
+  return unique(rewardTypes)
+    .map((type) => rewardIdeas[type])
+    .filter(Boolean)
+    .flatMap((reward) => reward.examples.map((example) => `${reward.label}：${example}`))
+    .slice(0, 4);
+}
+
 export function normalizePlanInput(rawInput = {}) {
   const age = clamp(toInt(rawInput.age, 8), 4, 17);
   const length = toInt(rawInput.planLengthWeeks, 4) === 8 ? 8 : 4;
@@ -90,6 +99,7 @@ export function buildPlan(rawInput) {
   const selectedRules = selectRules(input, ageBand);
   const forms = unique(selectedRules.flatMap((rule) => rule.forms));
   const weeklyPlan = buildWeeklyPlan(input.planLengthWeeks, selectedRules, input);
+  const rewardSuggestions = buildRewardSuggestions(input.rewardTypes);
   const timeNote =
     input.availableTime === "very_limited"
       ? "每天先保留 10 分鐘，目標少一點也可以。"
@@ -112,6 +122,7 @@ export function buildPlan(rawInput) {
     })),
     familyAdjustments: familyAdjustments[input.familyPattern] || [],
     schoolSuggestions: schoolAdjustments[input.schoolSupport] || [],
+    rewardSuggestions,
     weeklyPlan,
     trackingIndicators: [
       "本週成功完成目標的天數",

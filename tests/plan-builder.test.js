@@ -88,6 +88,23 @@ test("main difficulty stays ahead of low school support in generation priority",
   assert.match(plan.summary, /作業拖延/);
 });
 
+test("reward preferences change visible plan suggestions", () => {
+  const activityPlan = buildPlan({
+    age: 8,
+    mainDifficulty: "morning_routine",
+    rewardTypes: ["activity"],
+  });
+  const screenPlan = buildPlan({
+    age: 8,
+    mainDifficulty: "morning_routine",
+    rewardTypes: ["screen_time"],
+  });
+
+  assert.ok(activityPlan.rewardSuggestions.some((text) => text.includes("公園時間")));
+  assert.ok(screenPlan.rewardSuggestions.some((text) => text.includes("額外 10 分鐘遊戲")));
+  assert.notDeepEqual(activityPlan.rewardSuggestions, screenPlan.rewardSuggestions);
+});
+
 test("exporters produce JSON and CSV that contain weekly plan data", () => {
   const plan = buildPlan({
     age: 8,

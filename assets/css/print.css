@@ -44,10 +44,26 @@
   }
 
   table {
+    width: 100%;
     break-inside: auto;
   }
 
   tr {
     break-inside: avoid;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .print-sheet {
+    padding: 0.5rem;
+  }
+
+  .print-sheet th,
+  .print-sheet td {
+    min-width: 0;
+    padding: 0.3rem;
+    word-break: break-word;
   }
 }
