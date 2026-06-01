@@ -113,6 +113,11 @@
   padding: 0.25rem 0;
 }
 
+.docs-sidebar a[aria-current="page"] {
+  color: var(--color-primary-dark);
+  font-weight: 800;
+}
+
 .docs-content {
   background: rgba(255, 253, 247, 0.88);
   border: 1px solid var(--color-line);

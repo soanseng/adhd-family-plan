@@ -103,6 +103,18 @@ test("forgetfulness main difficulty is not outranked by secondary modifiers", ()
   assert.match(plan.summary, /早晨出門流程/);
 });
 
+test("forgetfulness keeps age fit for adolescent plans", () => {
+  const plan = buildPlan({
+    age: 15,
+    mainDifficulty: "forgetfulness",
+    schoolSupport: "low",
+    planLengthWeeks: 4,
+  });
+
+  assert.equal(plan.strategies[0].id, "homework_delay");
+  assert.match(plan.summary, /作業拖延/);
+});
+
 test("reward preferences change visible plan suggestions", () => {
   const activityPlan = buildPlan({
     age: 8,

@@ -37,7 +37,13 @@ function selectRules(input, ageBand) {
     .sort((a, b) => b.score - a.score || a.rule.label.localeCompare(b.rule.label, "zh-Hant"));
   const primaryIds = mainDifficultyAliases[input.mainDifficulty] || [input.mainDifficulty];
   const primary =
-    primaryIds.map((id) => scoredRules.find(({ rule }) => rule.id === id)).find(Boolean) ||
+    primaryIds
+      .map((id, aliasIndex) => {
+        const match = scoredRules.find(({ rule }) => rule.id === id);
+        return match ? { ...match, aliasIndex } : null;
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score || a.aliasIndex - b.aliasIndex)[0] ||
     scoredRules.find(({ rule }) => rule.triggers[0] === input.mainDifficulty) ||
     scoredRules.find(({ rule }) => rule.triggers.includes(input.mainDifficulty));
   const orderedRules = primary
