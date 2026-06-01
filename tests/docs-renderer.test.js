@@ -54,3 +54,11 @@ test("generator print button is disabled before output exists", () => {
 
   assert.match(html, /data-print data-print-plan disabled/);
 });
+
+test("generator exposes every supported child age", () => {
+  const html = readFileSync("generator.html", "utf8");
+  const ageSelect = html.match(/<select id="age"[\s\S]*?<\/select>/)?.[0] || "";
+  const ages = [...ageSelect.matchAll(/<option value="(\d+)"/g)].map((match) => Number(match[1]));
+
+  assert.deepEqual(ages, [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]);
+});
