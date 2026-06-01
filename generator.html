@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>產生我的 ADHD 家庭計劃</title>
+    <meta name="description" content="輸入年齡、主要困難、家庭時間與學校支持程度，產生 4 週或 8 週 ADHD 家庭本位計劃。資料只留在使用者裝置。">
+    <meta property="og:title" content="產生我的 ADHD 家庭計劃">
+    <meta property="og:description" content="client-side 產生器，不登入、不上傳個資。">
+    <meta property="og:image" content="assets/img/family-planning-workbook.png">
+    <link rel="canonical" href="https://soanseng.github.io/adhd-family-plan/generator.html">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/layout.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/print.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要內容</a>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand-mark" href="index.html">ADHD 家庭本位計劃</a>
+        <nav class="site-nav" aria-label="主要導覽">
+          <a href="generator.html">產生計劃</a>
+          <a href="downloads.html">下載表格</a>
+          <a href="docs/index.html">完整指南</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="section-band">
+      <div class="section-inner">
+        <div class="section-header">
+          <h1>產生我的家庭計劃</h1>
+          <p>請使用概略條件，不要輸入真實姓名、學校名稱、地址或診斷證明。資料只存在你的瀏覽器裝置，可一鍵清除。</p>
+        </div>
+        <div class="generator-shell">
+          <form class="form-section generator-panel" data-generator-form>
+            <div class="privacy-note">
+              <strong>隱私：</strong>本表單不會上傳資料。若勾選暫存，資料只存在這台裝置的 localStorage。
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="age">孩子年齡</label>
+                <select id="age" name="age" required>
+                  <option value="5">5 歲</option>
+                  <option value="8" selected>8 歲</option>
+                  <option value="11">11 歲</option>
+                  <option value="15">15 歲</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="grade">年級</label>
+                <select id="grade" name="grade">
+                  <option>幼兒園</option>
+                  <option selected>小二</option>
+                  <option>小五</option>
+                  <option>國中</option>
+                  <option>高中</option>
+                </select>
+              </div>
+              <fieldset class="field">
+                <legend>主要困難</legend>
+                <div class="choice-group">
+                  <label><input type="radio" name="mainDifficulty" value="morning_routine"> 早晨流程</label>
+                  <label><input type="radio" name="mainDifficulty" value="homework_delay" checked> 作業拖延</label>
+                  <label><input type="radio" name="mainDifficulty" value="emotional_outburst"> 情緒爆發</label>
+                  <label><input type="radio" name="mainDifficulty" value="forgetfulness"> 漏東漏西</label>
+                </div>
+              </fieldset>
+              <div class="field">
+                <label for="familyPattern">家庭條件</label>
+                <select id="familyPattern" name="familyPattern">
+                  <option value="late_work">雙親全職，晚上才有空</option>
+                  <option value="at_home_caregiver">一位主要照顧者在家</option>
+                  <option value="grandparent">隔代教養或祖父母協助</option>
+                  <option value="high_stress" selected>單親或主要照顧者高壓</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="availableTime">每天可執行時間</label>
+                <select id="availableTime" name="availableTime">
+                  <option value="very_limited">10 分鐘以內</option>
+                  <option value="limited" selected>10-30 分鐘</option>
+                  <option value="steady">30 分鐘以上</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="schoolSupport">學校支持程度</label>
+                <select id="schoolSupport" name="schoolSupport">
+                  <option value="low">目前很少合作</option>
+                  <option value="moderate" selected>可偶爾溝通</option>
+                  <option value="high">老師願意一起追蹤</option>
+                </select>
+              </div>
+              <fieldset class="field">
+                <legend>計劃長度</legend>
+                <div class="choice-group">
+                  <label><input type="radio" name="planLengthWeeks" value="4" checked> 4 週 Starter</label>
+                  <label><input type="radio" name="planLengthWeeks" value="8"> 8 週 Standard</label>
+                </div>
+              </fieldset>
+              <fieldset class="field">
+                <legend>額外狀況</legend>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="sleepIssue"> 睡眠困難</label>
+                  <label><input type="checkbox" name="screenIssue"> 螢幕時間困難</label>
+                </div>
+              </fieldset>
+              <fieldset class="field">
+                <legend>偏好獎勵</legend>
+                <div class="choice-group">
+                  <label><input type="checkbox" name="rewardTypes" value="parent_child_time" checked> 親子時間</label>
+                  <label><input type="checkbox" name="rewardTypes" value="activity"> 活動</label>
+                  <label><input type="checkbox" name="rewardTypes" value="screen_time"> 螢幕時間</label>
+                </div>
+              </fieldset>
+              <input type="hidden" name="intensity" value="starter">
+            </div>
+            <div class="cta-row">
+              <button class="cta-button" type="submit">產生計劃</button>
+              <button class="cta-button cta-button--secondary" type="button" data-print>列印 / 另存 PDF</button>
+              <button class="cta-button cta-button--quiet" type="button" data-clear-draft>清除暫存</button>
+            </div>
+            <div class="cta-row">
+              <button class="cta-button cta-button--secondary" type="button" data-download-json>下載 JSON</button>
+              <button class="cta-button cta-button--secondary" type="button" data-download-csv>下載 CSV</button>
+            </div>
+          </form>
+          <section class="plan-preview" data-plan-output tabindex="-1" hidden>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <span>資料只留在你的裝置。</span>
+        <a href="docs/references.md">References</a>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+:root {
+  --color-ink: #1f2937;
+  --color-muted: #5f6878;
+  --color-bg: #fffaf0;
+  --color-paper: #fffdf7;
+  --color-panel: #ffffff;
+  --color-primary: #245f73;
+  --color-primary-dark: #164355;
+  --color-primary-soft: #dceff3;
+  --color-accent: #f59e0b;
+  --color-accent-soft: #fff1cf;
+  --color-success: #178a52;
+  --color-danger: #b42318;
+  --color-link: #1d4f91;
+  --color-link-visited: #6f3d91;
+  --color-line: #d9ded6;
+  --font-display: "Noto Serif TC", "Source Han Serif TC", "Songti TC", serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-soft: 0 14px 36px rgba(31, 41, 55, 0.1);
+  --measure: 72rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--color-ink);
+  background:
+    linear-gradient(90deg, rgba(36, 95, 115, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(36, 95, 115, 0.04) 1px, transparent 1px),
+    var(--color-bg);
+  background-size: 32px 32px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+
+a:visited {
+  color: var(--color-link-visited);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 8vw, 5.7rem);
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  letter-spacing: 0;
+}
+
+h3 {
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ul,
+ol {
+  padding-left: 1.4rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  background: var(--color-panel);
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--color-primary);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}

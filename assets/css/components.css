@@ -1,0 +1,224 @@
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.cta-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1rem;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cta-button:visited {
+  color: #fff;
+}
+
+.cta-button:hover {
+  background: var(--color-primary-dark);
+}
+
+.cta-button--secondary {
+  background: var(--color-panel);
+  color: var(--color-primary-dark);
+}
+
+.cta-button--secondary:visited {
+  color: var(--color-primary-dark);
+}
+
+.cta-button--quiet {
+  border-color: var(--color-line);
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.feature-card,
+.evidence-card,
+.download-card,
+.plan-card,
+.form-section {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.feature-card h3,
+.evidence-card h3,
+.download-card h3,
+.plan-card h3 {
+  margin-top: 0;
+}
+
+.feature-card p,
+.evidence-card p,
+.download-card p {
+  color: var(--color-muted);
+}
+
+.safety-alert {
+  border: 2px solid #f1b4ad;
+  background: #fff7f5;
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.privacy-note {
+  border: 1px dashed var(--color-primary);
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+}
+
+.worksheet-preview {
+  position: relative;
+  background: var(--color-paper);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.worksheet-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px dashed rgba(36, 95, 115, 0.35);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+}
+
+.worksheet-preview__row {
+  display: grid;
+  grid-template-columns: 5rem 1fr 4rem;
+  gap: 0.6rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.worksheet-preview__row:last-child {
+  border-bottom: 0;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li,
+.option-chip {
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-paper);
+  padding: 0.35rem 0.7rem;
+  font-weight: 700;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field label,
+.field legend {
+  font-weight: 800;
+}
+
+.field input,
+.field select,
+.field textarea {
+  min-height: 44px;
+  width: 100%;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  padding: 0.6rem 0.75rem;
+  color: var(--color-ink);
+}
+
+.choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.choice-group label {
+  display: inline-flex;
+  flex: 1 1 10rem;
+  min-height: 44px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-panel);
+  padding: 0.35rem 0.7rem;
+  white-space: nowrap;
+}
+
+.choice-group input[type="radio"],
+.choice-group input[type="checkbox"] {
+  min-height: auto;
+  width: auto;
+  flex: 0 0 auto;
+}
+
+.plan-preview {
+  display: grid;
+  gap: 1rem;
+}
+
+.plan-card--highlight {
+  border-color: var(--color-primary);
+  background: linear-gradient(180deg, var(--color-primary-soft), var(--color-panel));
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.print-sheet {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  padding: 1rem;
+}
+
+.print-sheet table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.print-sheet th,
+.print-sheet td {
+  min-width: 7rem;
+  border: 1px solid var(--color-line);
+  padding: 0.55rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.reference-note {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
