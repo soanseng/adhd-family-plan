@@ -38,9 +38,19 @@
   color: var(--color-primary-dark);
 }
 
+.cta-button--secondary:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+
 .cta-button--quiet {
   border-color: var(--color-line);
   background: transparent;
+  color: var(--color-ink);
+}
+
+.cta-button--quiet:hover {
+  background: var(--color-accent-soft);
   color: var(--color-ink);
 }
 
