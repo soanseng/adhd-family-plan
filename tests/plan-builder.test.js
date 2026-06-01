@@ -116,6 +116,33 @@ test("forgetfulness keeps age fit for adolescent plans", () => {
   assert.match(plan.summary, /作業拖延/);
 });
 
+test("preschool plans do not use school-age strategy modules", () => {
+  const plan = buildPlan({
+    age: 5,
+    mainDifficulty: "homework_delay",
+    planLengthWeeks: 4,
+  });
+
+  assert.equal(plan.ageBand.id, "preschool");
+  assert.deepEqual(
+    plan.strategies.map((strategy) => strategy.id),
+    ["morning_routine", "emotional_outburst"],
+  );
+  assert.ok(plan.forms.every((form) => !["homework-sprint", "school-home-note"].includes(form.id)));
+});
+
+test("adolescent plans do not use child-only morning routine modules", () => {
+  const plan = buildPlan({
+    age: 15,
+    mainDifficulty: "morning_routine",
+    planLengthWeeks: 4,
+  });
+
+  assert.equal(plan.ageBand.id, "adolescent");
+  assert.ok(plan.strategies.every((strategy) => strategy.id !== "morning_routine"));
+  assert.ok(plan.forms.every((form) => form.id !== "daily-routine"));
+});
+
 test("reward preferences change visible plan suggestions", () => {
   const activityPlan = buildPlan({
     age: 8,

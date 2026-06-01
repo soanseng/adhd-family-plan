@@ -24,17 +24,17 @@ function buildTriggers(input) {
 }
 
 function scoreRule(rule, triggers, ageBandId) {
+  if (!rule.ageBands.includes(ageBandId)) return 0;
   const triggerScore = rule.triggers.filter((trigger) => triggers.includes(trigger)).length * 4;
-  const ageScore = rule.ageBands.includes(ageBandId) ? 2 : 0;
-  return triggerScore + ageScore;
+  return triggerScore + 2;
 }
 
 function selectRules(input, ageBand) {
   const triggers = buildTriggers(input);
   const scoredRules = ruleModules
-    .map((rule) => ({ rule, score: scoreRule(rule, triggers, ageBand.id) }))
+    .map((rule, index) => ({ rule, score: scoreRule(rule, triggers, ageBand.id), index }))
     .filter(({ score }) => score > 0)
-    .sort((a, b) => b.score - a.score || a.rule.label.localeCompare(b.rule.label, "zh-Hant"));
+    .sort((a, b) => b.score - a.score || a.index - b.index);
   const primaryIds = mainDifficultyAliases[input.mainDifficulty] || [input.mainDifficulty];
   const primary =
     primaryIds
