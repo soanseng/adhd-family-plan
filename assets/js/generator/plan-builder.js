@@ -113,7 +113,6 @@ export function buildPlan(rawInput) {
 
   return {
     meta: {
-      generatedAt: new Date().toISOString(),
       version: "0.1.0",
     },
     input,

@@ -24,6 +24,7 @@ test("buildPlan creates a deterministic 4-week starter plan for homework difficu
     first.weeklyPlan.map((week) => week.theme),
     second.weeklyPlan.map((week) => week.theme),
   );
+  assert.deepEqual(first, second);
   assert.ok(first.familyAdjustments.includes("晚上只追蹤 1-2 個目標"));
 });
 
