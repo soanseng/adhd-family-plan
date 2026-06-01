@@ -13,6 +13,9 @@ const allowedChapters = new Set([
   "references.md",
 ]);
 
+const clinicalDisclaimer =
+  "本網站提供 ADHD 家庭支持與教育資訊，不能取代醫師、心理師、職能治療師、特教老師或其他專業人員的評估與治療。若孩子出現明顯情緒低落、強烈焦慮、攻擊行為、嚴重睡眠問題、學習退化、疑似自閉症或其他發展困難，請尋求專業協助。若孩子正在使用藥物，請勿自行停藥或調整劑量，請與醫師討論。";
+
 function escapeHTML(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -84,6 +87,12 @@ export function renderMarkdown(markdown) {
   return html.join("\n");
 }
 
+export function renderChapterHTML(markdown) {
+  const html = renderMarkdown(markdown);
+  if (html.includes(clinicalDisclaimer)) return html;
+  return `${html}\n<div class="safety-alert">${escapeHTML(clinicalDisclaimer)}</div>`;
+}
+
 function selectedChapter() {
   const requested = new URLSearchParams(window.location.search).get("chapter") || "README.md";
   return allowedChapters.has(requested) ? requested : "README.md";
@@ -102,7 +111,7 @@ async function loadChapter() {
   });
   const response = await fetch(chapter);
   if (!response.ok) throw new Error(`Unable to load ${chapter}`);
-  content.innerHTML = renderMarkdown(await response.text());
+  content.innerHTML = renderChapterHTML(await response.text());
 }
 
 if (typeof window !== "undefined") {

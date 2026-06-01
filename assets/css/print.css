@@ -27,6 +27,11 @@
     padding: 0;
   }
 
+  .docs-layout,
+  .generator-shell {
+    display: block;
+  }
+
   .feature-card,
   .evidence-card,
   .download-card,

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { renderMarkdown } from "../assets/js/docs/index.js";
+import { renderChapterHTML, renderMarkdown } from "../assets/js/docs/index.js";
 
 test("docs sidebar routes chapters through rendered guide page", () => {
   const html = readFileSync("docs/index.html", "utf8");
@@ -19,4 +19,21 @@ test("markdown renderer emits HTML instead of raw markdown", () => {
   assert.match(html, /<h1>標題<\/h1>/);
   assert.match(html, /<li>項目<\/li>/);
   assert.match(html, /class="safety-alert"/);
+});
+
+test("chapter renderer keeps full clinical disclaimer", () => {
+  const html = renderChapterHTML("# 家長訓練\n\n一般內容");
+
+  assert.match(html, /不能取代醫師、心理師、職能治療師、特教老師/);
+  assert.match(html, /請勿自行停藥或調整劑量/);
+});
+
+test("footer references route through rendered docs shell", () => {
+  const root = readFileSync("index.html", "utf8");
+  const generator = readFileSync("generator.html", "utf8");
+
+  assert.match(root, /docs\/index\.html\?chapter=references\.md/);
+  assert.match(generator, /docs\/index\.html\?chapter=references\.md/);
+  assert.doesNotMatch(root, /href="docs\/references\.md"/);
+  assert.doesNotMatch(generator, /href="docs\/references\.md"/);
 });
